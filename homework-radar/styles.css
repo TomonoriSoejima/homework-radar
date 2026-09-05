@@ -401,7 +401,6 @@ svg {
     grid-template-columns: 1fr;
   }
 
-  .timeline,
   .insight-panel {
     display: none;
   }
