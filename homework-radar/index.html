@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework Radar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,760&family=Public+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="App overview">
+        <div>
+          <p class="eyebrow">Homework Radar</p>
+          <h1>Today’s homework, pulled from school email.</h1>
+        </div>
+        <div class="account-card" aria-label="Connected account">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Gmail connected</strong>
+            <span>haruto.6647@ocsi.org</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="briefing" aria-label="Parent briefing">
+        <div class="briefing-copy">
+          <span class="pill urgent">Parent morning brief</span>
+          <h2 id="briefingTitle">Assignments</h2>
+          <p id="briefingText">I found due dates in Google Classroom emails and listed them below.</p>
+        </div>
+        <div class="metrics" aria-label="Assignment counts">
+          <div>
+            <strong id="totalCount">0</strong>
+            <span>Total</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Assignment controls">
+        <div class="segmented" role="tablist" aria-label="View mode">
+          <button class="segment active" data-view="parent" type="button">Parent</button>
+          <button class="segment" data-view="student" type="button">Student</button>
+        </div>
+        <div class="filter-row" role="group" aria-label="Class filters">
+          <button class="filter active" data-filter="All" type="button">All</button>
+          <button class="filter" data-filter="Math" type="button">Math</button>
+          <button class="filter" data-filter="English" type="button">English</button>
+          <button class="filter" data-filter="Science" type="button">Science</button>
+          <button class="filter" data-filter="World History" type="button">History</button>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Assignments">
+        <aside class="timeline" aria-label="Upcoming days">
+          <h2>Due dates</h2>
+          <div id="timelineList"></div>
+        </aside>
+
+        <section class="assignment-panel">
+          <div class="panel-header">
+            <div>
+              <h2>Assignments</h2>
+              <p id="panelSubcopy">Sorted by what needs attention first.</p>
+            </div>
+            <button class="icon-button" id="scanButton" type="button" aria-label="Scan Gmail">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+            </button>
+          </div>
+          <div id="assignmentList" class="assignment-list"></div>
+        </section>
+
+        <aside class="insight-panel" aria-label="Automation preview">
+          <h2>What the app does</h2>
+          <div class="step done">
+            <span>1</span>
+            <p>Reads recent school emails with due-date language.</p>
+          </div>
+          <div class="step done">
+            <span>2</span>
+            <p>Extracts assignment names, classes, and due dates.</p>
+          </div>
+          <div class="step done">
+            <span>3</span>
+            <p>Merges duplicate “new assignment” and “due tomorrow” reminders.</p>
+          </div>
+          <div class="step next">
+            <span>4</span>
+            <p>Sends a calm daily digest when parents actually need it.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="assignmentTemplate">
+      <article class="assignment-card">
+        <div class="assignment-main">
+          <div class="assignment-meta">
+            <span class="class-chip"></span>
+            <span class="due-chip"></span>
+          </div>
+          <h3></h3>
+          <p></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

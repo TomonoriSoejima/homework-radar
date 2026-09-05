@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.haru.homeworkradar.fetch</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/surfer/Documents/personal/12.haru/scripts/fetch-assignments.js</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/surfer/Documents/personal/12.haru</string>
+  <key>StartInterval</key>
+  <integer>1800</integer>
+  <key>StandardOutPath</key>
+  <string>/Users/surfer/Documents/personal/12.haru/scripts/fetch.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/surfer/Documents/personal/12.haru/scripts/fetch.error.log</string>
+</dict>
+</plist>
