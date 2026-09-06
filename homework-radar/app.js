@@ -1,7 +1,6 @@
 let assignments = [];
 
 let activeFilter = "All";
-let activeView = "parent";
 
 const assignmentList = document.querySelector("#assignmentList");
 const timelineList = document.querySelector("#timelineList");
@@ -28,13 +27,11 @@ function visibleAssignments() {
 function renderMetrics() {
   document.querySelector("#totalCount").textContent = assignments.length;
   document.querySelector("#briefingTitle").textContent = `${assignments.length} assignments`;
-  document.querySelector("#briefingText").textContent =
-    activeView === "parent"
-      ? "The app reads school email and pulls out due dates into one list."
-      : "This view lists what's due, sorted soonest first.";
+  document.querySelector("#briefingText").textContent = "The app reads school email and pulls out due dates into one list.";
 }
 
 function renderTimeline() {
+  const todayStr = new Date().toISOString().slice(0, 10);
   const counts = assignments.reduce((map, assignment) => {
     map.set(assignment.due, (map.get(assignment.due) || 0) + 1);
     return map;
@@ -45,8 +42,9 @@ function renderTimeline() {
     .sort(([a], [b]) => parseDate(b) - parseDate(a))
     .forEach(([due, count]) => {
       const item = document.createElement("div");
-      item.className = "timeline-item";
-      item.innerHTML = `<strong>${formatDate(due)}</strong><span>${count} item${count === 1 ? "" : "s"}</span>`;
+      const marker = due < todayStr ? "Past" : due === todayStr ? "Today" : "Upcoming";
+      item.className = `timeline-item timeline-item--${marker.toLowerCase()}`;
+      item.innerHTML = `<strong>${formatDate(due)}</strong><span class="timeline-marker">${marker}</span><span>${count} item${count === 1 ? "" : "s"}</span>`;
       timelineList.append(item);
     });
 }
@@ -58,8 +56,7 @@ function renderAssignments() {
     const node = template.content.firstElementChild.cloneNode(true);
 
     node.querySelector("h3").textContent = assignment.title;
-    node.querySelector("p").textContent =
-      activeView === "parent" ? `${assignment.detail} Source: ${assignment.source}.` : assignment.detail;
+    node.querySelector("p").textContent = `${assignment.detail} Source: ${assignment.source}.`;
     node.querySelector(".class-chip").textContent = assignment.className;
     node.querySelector(".class-chip").dataset.subject = assignment.className;
 
@@ -86,27 +83,6 @@ document.querySelectorAll(".filter").forEach((button) => {
     activeFilter = button.dataset.filter;
     render();
   });
-});
-
-document.querySelectorAll(".segment").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".segment").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    activeView = button.dataset.view;
-    render();
-  });
-});
-
-document.querySelector("#scanButton").addEventListener("click", () => {
-  const button = document.querySelector("#scanButton");
-  button.animate(
-    [
-      { transform: "rotate(0deg) scale(1)" },
-      { transform: "rotate(-6deg) scale(1.06)" },
-      { transform: "rotate(0deg) scale(1)" },
-    ],
-    { duration: 420, easing: "ease-out" },
-  );
 });
 
 async function init() {

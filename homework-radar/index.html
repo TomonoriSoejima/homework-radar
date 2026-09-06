@@ -23,7 +23,6 @@
           <span class="status-dot"></span>
           <div>
             <strong>Gmail connected</strong>
-            <span>haruto.6647@ocsi.org</span>
           </div>
         </div>
       </section>
@@ -43,10 +42,6 @@
       </section>
 
       <section class="controls" aria-label="Assignment controls">
-        <div class="segmented" role="tablist" aria-label="View mode">
-          <button class="segment active" data-view="parent" type="button">Parent</button>
-          <button class="segment" data-view="student" type="button">Student</button>
-        </div>
         <div class="filter-row" role="group" aria-label="Class filters">
           <button class="filter active" data-filter="All" type="button">All</button>
           <button class="filter" data-filter="Math" type="button">Math</button>
@@ -68,35 +63,9 @@
               <h2>Assignments</h2>
               <p id="panelSubcopy">Sorted by what needs attention first.</p>
             </div>
-            <button class="icon-button" id="scanButton" type="button" aria-label="Scan Gmail">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 4h16v16H4z"></path>
-                <path d="m4 7 8 6 8-6"></path>
-              </svg>
-            </button>
           </div>
           <div id="assignmentList" class="assignment-list"></div>
         </section>
-
-        <aside class="insight-panel" aria-label="Automation preview">
-          <h2>What the app does</h2>
-          <div class="step done">
-            <span>1</span>
-            <p>Reads recent school emails with due-date language.</p>
-          </div>
-          <div class="step done">
-            <span>2</span>
-            <p>Extracts assignment names, classes, and due dates.</p>
-          </div>
-          <div class="step done">
-            <span>3</span>
-            <p>Merges duplicate “new assignment” and “due tomorrow” reminders.</p>
-          </div>
-          <div class="step next">
-            <span>4</span>
-            <p>Sends a calm daily digest when parents actually need it.</p>
-          </div>
-        </aside>
       </section>
     </main>
 
